@@ -28,6 +28,3 @@ law.order.graph <-ggplot(law.order, aes(x=date, y=av_rating, fill= av_rating, co
   scale_color_gradient(low = "#56B1F7", high = "#132B43")
 
 law.order.graph
-
-library(usethis)
-use_git_config(user.name = "adlihs", user.email = "edmondneil@gmail.com")
