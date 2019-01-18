@@ -29,5 +29,5 @@ law.order.graph <-ggplot(law.order, aes(x=date, y=av_rating, fill= av_rating, co
 
 law.order.graph
 
-git config user.email "edmondneil@gmail.com"
-git config user.name "insert github real name here"
+library(usethis)
+use_git_config(user.name = "adlihs", user.email = "edmondneil@gmail.com")
