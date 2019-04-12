@@ -1,8 +1,12 @@
-#package
-ipak("RCurl")
-ipak("tidyverse")
-ipak("flexdashboard")
+---
+title: "TidyTuesday Week 02:Space Launches"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
 
+```{r setup, include=FALSE}
 library(flexdashboard)
 library('ggplot2')
 library("RCurl")
@@ -33,10 +37,14 @@ launches.mission <- wk03_launches %>%
   tally() %>%
   top_n(10) 
 
+```
 
+Column {data-width=650}
+-----------------------------------------------------------------------
 
 ### by Type of Agency
 
+```{r}
 ggplot(data = wk03_launches) +
   aes(x = launch_year) +
   geom_histogram(bins = 30, fill = '#1f9e89') +
@@ -46,18 +54,27 @@ ggplot(data = wk03_launches) +
   theme_bw() +
   facet_wrap(vars(agency_type))
 
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
 ### by Year
+
+```{r}
 
 ggplot(data = launches.year) +
   aes(x = launch_year, y = n) +
   geom_line(color = '#1f9e89') +
   labs(x = 'Year',
-       y = '# of Launches') +
+    y = '# of Launches') +
   theme_classic()
 
+```
 
 ### by Mission - Top 10
 
+```{r}
 ggplot(data = launches.mission) +
   aes(x = reorder(mission,n), weight = n, label = n) +
   geom_bar(fill = '#1f9e89') +
@@ -66,3 +83,7 @@ ggplot(data = launches.mission) +
   theme_classic() +
   coord_flip() +
   geom_text(aes(y=n), position=position_dodge2(width=0.9), hjust = -0.25) 
+ 
+
+```
+
